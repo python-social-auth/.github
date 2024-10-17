@@ -13,13 +13,15 @@
   "projects": [
     {
       "guid": "social-core",
-      "name": " Python Social Auth - Core ",
+      "name": "Python Social Auth - Core",
       "description": "Python Social Auth is an easy to setup social authentication/registration mechanism with support for several frameworks and auth providers.",
       "webpageUrl": {
-        "url": "https://github.com/python-social-auth/social-core"
+        "url": "https://github.com/python-social-auth/social-core",
+        "wellKnown": "https://github.com/python-social-auth/social-core/blob/master/.well-known/funding-manifest-urls"
       },
       "repositoryUrl": {
-        "url": "https://github.com/python-social-auth/social-core"
+        "url": "https://github.com/python-social-auth/social-core",
+        "wellKnown": "https://github.com/python-social-auth/social-core/blob/master/.well-known/funding-manifest-urls"
       },
       "licenses": [
         "BSD-3-Clause"
@@ -35,10 +37,12 @@
       "name": "Python Social Auth - Application - Django",
       "description": "This is the Django component of the python-social-auth ecosystem, it implements the needed functionality to integrate social-auth-core in a Django based project.",
       "webpageUrl": {
-        "url": "https://github.com/python-social-auth/social-app-django"
+        "url": "https://github.com/python-social-auth/social-app-django",
+        "wellKnown": "https://github.com/python-social-auth/social-app-django/blob/master/.well-known/funding-manifest-urls"
       },
       "repositoryUrl": {
-        "url": "https://github.com/python-social-auth/social-app-django"
+        "url": "https://github.com/python-social-auth/social-app-django",
+        "wellKnown": "https://github.com/python-social-auth/social-app-django/blob/master/.well-known/funding-manifest-urls"
       },
       "licenses": [
         "BSD-3-Clause"
