@@ -1,0 +1,90 @@
+{
+  "version": "v1.0.0",
+  "entity": {
+    "type": "organisation",
+    "role": "owner",
+    "name": "Python Social Auth",
+    "email": "michal@weblate.org",
+    "description": "Python Social Auth aims to be an easy-to-setup social authentication and authorization mechanism for Python projects supporting protocols like OAuth (1 and 2), OpenID and others.",
+    "webpageUrl": {
+      "url": "https://github.com/python-social-auth/"
+    }
+  },
+  "projects": [
+    {
+      "guid": "social-core",
+      "name": " Python Social Auth - Core ",
+      "description": "Python Social Auth is an easy to setup social authentication/registration mechanism with support for several frameworks and auth providers.",
+      "webpageUrl": {
+        "url": "https://github.com/python-social-auth/social-core"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/python-social-auth/social-core"
+      },
+      "licenses": [
+        "BSD-3-Clause"
+      ],
+      "tags": [
+        "authentication",
+        "social",
+        "python"
+      ]
+    },
+    {
+      "guid": "social-app-django",
+      "name": "Python Social Auth - Application - Django",
+      "description": "This is the Django component of the python-social-auth ecosystem, it implements the needed functionality to integrate social-auth-core in a Django based project.",
+      "webpageUrl": {
+        "url": "https://github.com/python-social-auth/social-app-django"
+      },
+      "repositoryUrl": {
+        "url": "https://github.com/python-social-auth/social-app-django"
+      },
+      "licenses": [
+        "BSD-3-Clause"
+      ],
+      "tags": [
+        "authentication",
+        "social",
+        "python",
+        "django"
+      ]
+    }
+  ],
+  "funding": {
+    "channels": [
+      {
+        "guid": "opencollective",
+        "type": "gateway",
+        "address": "https://opencollective.com/python-social-auth"
+      }
+    ],
+    "plans": [
+      {
+        "guid": "backer",
+        "status": "active",
+        "name": "Backer",
+        "description": "Become a backer for 5,00 $ per month and support us.",
+        "amount": 5,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective"
+        ]
+      },
+      {
+        "guid": "sponsor",
+        "status": "active",
+        "name": "Sponsor",
+        "description": "Become a sponsor for 100,00 $ per month and support us.",
+        "amount": 100,
+        "currency": "USD",
+        "frequency": "monthly",
+        "channels": [
+          "opencollective"
+        ]
+      }
+    ],
+    "history": []
+  }
+}
