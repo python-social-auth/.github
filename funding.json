@@ -1,7 +1,7 @@
 {
   "version": "v1.0.0",
   "entity": {
-    "type": "organisation",
+    "type": "group",
     "role": "owner",
     "name": "Python Social Auth",
     "email": "michal@weblate.org",
