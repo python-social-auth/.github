@@ -60,7 +60,7 @@
     "channels": [
       {
         "guid": "opencollective",
-        "type": "gateway",
+        "type": "payment-provider",
         "address": "https://opencollective.com/python-social-auth"
       }
     ],
