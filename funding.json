@@ -2,7 +2,7 @@
   "version": "v1.0.0",
   "entity": {
     "type": "group",
-    "role": "owner",
+    "role": "steward",
     "name": "Python Social Auth",
     "email": "michal@weblate.org",
     "description": "Python Social Auth aims to be an easy-to-setup social authentication and authorization mechanism for Python projects supporting protocols like OAuth (1 and 2), OpenID and others.",
