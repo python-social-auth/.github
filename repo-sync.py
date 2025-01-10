@@ -69,6 +69,11 @@ COMMIT_MESSAGE = """chore: update shared files
 Automated update of shared files from the social-core repository, see
 https://github.com/python-social-auth/.github/blob/main/repo-sync.py
 """
+COMMIT_MESSAGE_PRE_COMMIT = """chore: apply pre-commit fixes
+
+Automated update of shared files from the social-core repository, see
+https://github.com/python-social-auth/.github/blob/main/repo-sync.py
+"""
 
 
 def highlight(value: str) -> str:
@@ -167,6 +172,7 @@ class Repository:
                 output = self.directory / name
                 output.parent.mkdir(exist_ok=True, parents=True)
                 copyfile(self.base / name, output)
+
         # Remove extra files
         for name in REMOVE_FILES:
             if (self.name, name) in REMOVE_EXCEPTIONS:
@@ -174,13 +180,13 @@ class Repository:
             file = self.directory / name
             file.unlink(missing_ok=True)
 
-    def commit(self) -> None:
+    def commit(self, message: str = COMMIT_MESSAGE) -> None:
         """Commit and push pending changes."""
         self.run(["git", "add", "."])
         print(f"Comparing {highlight(self.name)}")
         if self.run(["git", "diff", "--cached", "--exit-code"], check=False).returncode:
             print(f"Committing {highlight(self.name)}...")
-            self.run(["git", "commit", "-m", COMMIT_MESSAGE])
+            self.run(["git", "commit", "-m", message])
             self.run(["git", "push"])
 
     def update_readme(self, base: Readme) -> None:
@@ -191,6 +197,11 @@ class Repository:
                 readme = Readme(path)
                 readme.update(base)
                 readme.save()
+
+    def pre_commit(self) -> None:
+        """Run pre-commit on the repository."""
+        self.run(["uvx", "pre-commit", "run", "--all-files"], check=False)
+        self.commit(message=COMMIT_MESSAGE_PRE_COMMIT)
 
 
 def main() -> None:
@@ -216,6 +227,10 @@ def main() -> None:
     # Commit changes
     for repo in repos:
         repo.commit()
+
+    # Apply pre-commit changes
+    for repo in repos:
+        repo.pre_commit()
 
 
 if __name__ == "__main__":
