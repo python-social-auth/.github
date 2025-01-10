@@ -163,7 +163,9 @@ class Repository:
         # Update files from base repo
         if self.base != self.directory:
             for name in COPY_FROM_BASE:
-                copyfile(self.base / name, self.directory / name)
+                output = self.directory / name
+                output.parent.mkdir(exist_ok=True, parents=True)
+                copyfile(self.base / name, output)
         # Remove extra files
         for name in REMOVE_FILES:
             if (self.name, name) in REMOVE_EXCEPTIONS:
