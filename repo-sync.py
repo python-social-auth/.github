@@ -44,6 +44,13 @@ COPY_FROM_BASE: tuple[str, ...] = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
+WORKFLOW_REPLACE = (
+    "uses: ./.github/workflows/",
+    "uses: python-social-auth/social-core/.github/workflows/",
+)
+ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
+    ".github/workflows/pre-commit.yml": WORKFLOW_REPLACE,
+}
 REMOVE_FILES: tuple[str, ...] = (
     ".github/dependabot.yml",
     ".landscape.yaml",
@@ -172,6 +179,12 @@ class Repository:
                 output = self.directory / name
                 output.parent.mkdir(exist_ok=True, parents=True)
                 copyfile(self.base / name, output)
+
+            for name, (original, replacement) in ADJUST_FROM_BASE.items():
+                output = self.directory / name
+                output.parent.mkdir(exist_ok=True, parents=True)
+                source = (self.base / name).read_text()
+                output.write_text(source.replace(original, replacement))
 
         # Remove extra files
         for name in REMOVE_FILES:
