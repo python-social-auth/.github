@@ -44,12 +44,11 @@ COPY_FROM_BASE: tuple[str, ...] = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
-WORKFLOW_REPLACE = (
-    "uses: ./.github/workflows/",
-    "uses: python-social-auth/social-core/.github/workflows/",
-)
 ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
-    ".github/workflows/pre-commit.yml": WORKFLOW_REPLACE,
+    ".github/workflows/pre-commit.yml": (
+        "uses: ./.github/workflows/pre-commit-shared.yml",
+        "uses: python-social-auth/social-core/.github/workflows/pre-commit-shared.yml@master",
+    ),
 }
 REMOVE_FILES: tuple[str, ...] = (
     ".github/dependabot.yml",
