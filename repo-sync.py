@@ -23,6 +23,10 @@ COPY_FROM_BASE = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
+COMMIT_MESSAGE = """chore: update shared files
+
+Automated update of shared files from the social-core repository.
+"""
 
 
 def highlight(value: str) -> str:
@@ -68,7 +72,7 @@ class Repository:
         self.run(["git", "add", "."])
         if self.run(["git", "diff", "--cached", "--exit-code"], check=False).returncode:
             print(f"Committing {highlight(self.name)}...")
-            self.run(["git", "commit", "-m", "chore: update shared files"])
+            self.run(["git", "commit", "-m", COMMIT_MESSAGE])
             self.run(["git", "push"])
 
 
