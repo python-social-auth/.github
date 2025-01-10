@@ -43,6 +43,13 @@ REMOVE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
     # This is the only location for CONTRIBUTING.md
     (".github", "CONTRIBUTING.md"),
 )
+README_SECTIONS: tuple[str, ...] = (
+    "## Documentation",
+    "## Contributing",
+    "## Versioning",
+    "## License",
+    "## Donations",
+)
 COMMIT_MESSAGE = """chore: update shared files
 
 Automated update of shared files from the social-core repository, see
@@ -53,6 +60,55 @@ https://github.com/python-social-auth/.github/blob/main/repo-sync.py
 def highlight(value: str) -> str:
     """Highlight string for terminal output."""
     return colored(value, "cyan")
+
+
+class Readme:
+    """README updating helper."""
+
+    def __init__(self, path: Path) -> None:
+        """Initialize and load the file."""
+        self.path = path
+        self.sections: dict[str, str] = {}
+        self.load_existing()
+
+    def load_existing(self) -> None:
+        """Load existing content from file."""
+        if not self.path.exists():
+            return
+        section: str | None = None
+        content: list[str] = []
+
+        for line in self.path.read_text().splitlines():
+            if line.startswith("#"):
+                if section:
+                    self.sections[section] = "\n".join(content)
+                section = line
+                content = []
+            else:
+                content.append(line)
+        if section:
+            self.sections[section] = "\n".join(content)
+
+    def update(self, base: Readme) -> None:
+        """Update content to match base."""
+        for section, content in base.sections.items():
+            if section.startswith("# "):
+                # Initial description of PSA
+                for ours in self.sections:
+                    if ours.startswith("# "):
+                        self.sections[ours] = content
+            elif section in README_SECTIONS and section in self.sections:
+                # Individual sections
+                self.sections[section] = content
+
+    def save(self) -> None:
+        """Update the file on disk."""
+        self.path.write_text(
+            "\n".join(
+                f"{title.strip()}\n\n{content.strip()}\n"
+                for title, content in self.sections.items()
+            )
+        )
 
 
 class Repository:
@@ -109,17 +165,35 @@ class Repository:
             self.run(["git", "commit", "-m", COMMIT_MESSAGE])
             self.run(["git", "push"])
 
+    def update_readme(self, base: Readme) -> None:
+        """Update README files to match base."""
+        for name in ["README.md", "profile/README.md"]:
+            path = self.directory / name
+            if path.exists():
+                readme = Readme(path)
+                readme.update(base)
+                readme.save()
+
 
 def main() -> None:
     """Update all repositories."""
     # Base repository (social-core)
     base = REPOS / REPOSITORIES[0]
 
-    # Update repos
-    for name in REPOSITORIES:
-        repo = Repository(name, base)
+    repos = [Repository(name, base) for name in REPOSITORIES]
+
+    # Update working copies and files from base
+    for repo in repos:
         repo.checkout()
         repo.update_files()
+
+    # Update readme
+    readme = Readme(base / "README.md")
+    for repo in repos:
+        repo.update_readme(readme)
+
+    # Commit changes
+    for repo in repos:
         repo.commit()
 
 
