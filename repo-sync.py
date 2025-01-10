@@ -160,6 +160,7 @@ class Repository:
 
     def update_files(self) -> None:
         """Update files from the base repository."""
+        print(f"Updating {highlight(self.name)}")
         # Update files from base repo
         if self.base != self.directory:
             for name in COPY_FROM_BASE:
@@ -202,6 +203,9 @@ def main() -> None:
     # Update working copies and files from base
     for repo in repos:
         repo.checkout()
+
+    # Update files
+    for repo in repos:
         repo.update_files()
 
     # Update readme
