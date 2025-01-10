@@ -40,7 +40,8 @@ REMOVE_FILES = (
 )
 COMMIT_MESSAGE = """chore: update shared files
 
-Automated update of shared files from the social-core repository.
+Automated update of shared files from the social-core repository, see
+https://github.com/python-social-auth/.github/blob/main/repo-sync.py
 """
 
 
