@@ -1,21 +1,10 @@
 ## Proposed changes
 
+<!--
 Describe the big picture of your changes here to communicate to the maintainers
 why we should accept this pull request. If it fixes a bug or resolves a feature
 request, be sure to link to that issue.
-
-## Types of changes
-
-Please check the type of change your PR introduces:
-
-- [ ] Release (new release request)
-- [ ] Bugfix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Code style update (PEP8, lint, formatting, renaming, etc)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Build related changes (build process, tests runner, etc)
-- [ ] Other (please describe):
+-->
 
 ## Checklist
 
