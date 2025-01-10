@@ -33,6 +33,7 @@ COPY_FROM_BASE = (
 REMOVE_FILES = (
     ".github/dependabot.yml",
     ".landscape.yaml",
+    ".flake8",
     "Makefile",
     "Dockerfile",
     "CONTRIBUTING.md",
