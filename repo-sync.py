@@ -54,7 +54,7 @@ ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
         "uses: python-social-auth/social-core/.github/workflows/release-shared.yml@master",
     ),
 }
-ADJUST_FROM_BASE_EXCEPTIONS = tuple[tuple[str, str], ...] = (
+ADJUST_FROM_BASE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
     # These do not release
     (".github", ".github/workflows/release.yml"),
     ("social-docs", ".github/workflows/release.yml"),
