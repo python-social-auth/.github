@@ -1,6 +1,7 @@
 # Python Social Auth
 
-Python Social Auth is an easy to setup social authentication/registration mechanism with support for several frameworks and auth providers.
+Python Social Auth is an easy to setup social authentication/registration
+mechanism with support for several frameworks and auth providers.
 
 ## Documentation
 
