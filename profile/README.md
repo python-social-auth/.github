@@ -8,8 +8,8 @@ Project documentation is available at https://python-social-auth.readthedocs.io/
 
 This project welcomes donations to make the development sustainable, you can fund Python Social Auth on following platforms:
 
-* [GitHub Sponsors](https://github.com/sponsors/python-social-auth/)
-* [Open Collective](https://opencollective.com/python-social-auth)
+- [GitHub Sponsors](https://github.com/sponsors/python-social-auth/)
+- [Open Collective](https://opencollective.com/python-social-auth)
 
 ## Contributing
 
