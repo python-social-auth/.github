@@ -30,7 +30,13 @@ COPY_FROM_BASE = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
-REMOVE_FILES = (".github/dependabot.yml",)
+REMOVE_FILES = (
+    ".github/dependabot.yml",
+    ".landscape.yaml",
+    "Makefile",
+    "Dockerfile",
+    "CONTRIBUTING.md",
+)
 COMMIT_MESSAGE = """chore: update shared files
 
 Automated update of shared files from the social-core repository.
