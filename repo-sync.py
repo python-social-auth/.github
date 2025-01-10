@@ -52,6 +52,7 @@ ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
 }
 REMOVE_FILES: tuple[str, ...] = (
     ".github/dependabot.yml",
+    ".github/workflows/ruff.yml",
     ".landscape.yaml",
     ".flake8",
     "Makefile",
