@@ -37,6 +37,7 @@ REMOVE_FILES = (
     "Makefile",
     "Dockerfile",
     "CONTRIBUTING.md",
+    "renovate.json",
 )
 COMMIT_MESSAGE = """chore: update shared files
 
