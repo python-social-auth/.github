@@ -26,11 +26,11 @@ REPOSITORIES = (
 )
 ROOT = Path(__file__).parent
 REPOS = ROOT / "repos"
-COPY_FROM_BASE = (
+COPY_FROM_BASE: tuple[str, ...] = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
-REMOVE_FILES = (
+REMOVE_FILES: tuple[str, ...] = (
     ".github/dependabot.yml",
     ".landscape.yaml",
     ".flake8",
@@ -38,6 +38,10 @@ REMOVE_FILES = (
     "Dockerfile",
     "CONTRIBUTING.md",
     "renovate.json",
+)
+REMOVE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
+    # This is the only location for CONTRIBUTING.md
+    (".github", "CONTRIBUTING.md"),
 )
 COMMIT_MESSAGE = """chore: update shared files
 
@@ -92,6 +96,8 @@ class Repository:
                 copyfile(self.base / name, self.directory / name)
         # Remove extra files
         for name in REMOVE_FILES:
+            if (self.name, name) in REMOVE_EXCEPTIONS:
+                continue
             file = self.directory / name
             file.unlink(missing_ok=True)
 
