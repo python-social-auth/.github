@@ -30,6 +30,7 @@ COPY_FROM_BASE = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
 )
+REMOVE_FILES = (".github/dependabot.yml",)
 COMMIT_MESSAGE = """chore: update shared files
 
 Automated update of shared files from the social-core repository.
@@ -63,9 +64,8 @@ class Repository:
         if self.directory.exists():
             print(f"Updating {highlight(self.name)}...")
             # Update
+            self.run(["git", "remote", "update", "--prune", "origin"])
             self.run(["git", "reset", "--quiet", "--hard", "origin/HEAD"])
-            self.run(["git", "remote", "prune", "origin"])
-            subprocess.run(["git", "pull", "--quiet"], check=False)
         else:
             print(f"Cloning {highlight(self.name)}...")
             # Initial checkout
@@ -77,10 +77,14 @@ class Repository:
 
     def update_files(self) -> None:
         """Update files from the base repository."""
-        if self.base == self.directory:
-            return
-        for name in COPY_FROM_BASE:
-            copyfile(self.base / name, self.directory / name)
+        # Update files from base repo
+        if self.base != self.directory:
+            for name in COPY_FROM_BASE:
+                copyfile(self.base / name, self.directory / name)
+        # Remove extra files
+        for name in REMOVE_FILES:
+            file = self.directory / name
+            file.unlink(missing_ok=True)
 
     def commit(self) -> None:
         """Commit and push pending changes."""
