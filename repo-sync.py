@@ -21,8 +21,22 @@ from termcolor import colored
 REPOSITORIES = (
     # Core has to be the first as it is used to update some of the files
     "social-core",
-    "social-app-django",
+    "social-docs",
     ".github",
+    "social-app-django",
+    "social-app-cherrypy",
+    "social-storage-sqlalchemy",
+    "social-storage-peewee",
+    "social-storage-mongoengine",
+    "social-examples",
+    "social-app-flask-sqlalchemy",
+    "social-app-pyramid",
+    "social-app-tornado",
+    "social-app-webpy",
+    "social-app-django-mongoengine",
+    "social-app-flask-peewee",
+    "social-app-flask-mongoengine",
+    "social-app-flask",
 )
 ROOT = Path(__file__).parent
 REPOS = ROOT / "repos"
@@ -160,6 +174,7 @@ class Repository:
     def commit(self) -> None:
         """Commit and push pending changes."""
         self.run(["git", "add", "."])
+        print(f"Comparing {highlight(self.name)}")
         if self.run(["git", "diff", "--cached", "--exit-code"], check=False).returncode:
             print(f"Committing {highlight(self.name)}...")
             self.run(["git", "commit", "-m", COMMIT_MESSAGE])
