@@ -43,23 +43,20 @@ REPOS = ROOT / "repos"
 COPY_FROM_BASE: tuple[str, ...] = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
+    ".github/workflows/release.yml",
+)
+COPY_FROM_BASE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
+    # These do not release
+    (".github", ".github/workflows/release.yml"),
+    ("social-docs", ".github/workflows/release.yml"),
+    ("social-examples", ".github/workflows/release.yml"),
 )
 ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
     ".github/workflows/pre-commit.yml": (
         "uses: ./.github/workflows/pre-commit-shared.yml",
         "uses: python-social-auth/social-core/.github/workflows/pre-commit-shared.yml@master",
     ),
-    ".github/workflows/release.yml": (
-        "uses: ./.github/workflows/release-shared.yml",
-        "uses: python-social-auth/social-core/.github/workflows/release-shared.yml@master",
-    ),
 }
-ADJUST_FROM_BASE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
-    # These do not release
-    (".github", ".github/workflows/release.yml"),
-    ("social-docs", ".github/workflows/release.yml"),
-    ("social-examples", ".github/workflows/release.yml"),
-)
 REMOVE_FILES: tuple[str, ...] = (
     ".github/dependabot.yml",
     ".github/workflows/ruff.yml",
@@ -186,13 +183,13 @@ class Repository:
         # Update files from base repo
         if self.base != self.directory:
             for name in COPY_FROM_BASE:
+                if (self.name, name) in COPY_FROM_BASE_EXCEPTIONS:
+                    continue
                 output = self.directory / name
                 output.parent.mkdir(exist_ok=True, parents=True)
                 copyfile(self.base / name, output)
 
             for name, (original, replacement) in ADJUST_FROM_BASE.items():
-                if (self.name, name) in ADJUST_FROM_BASE_EXCEPTIONS:
-                    continue
                 output = self.directory / name
                 output.parent.mkdir(exist_ok=True, parents=True)
                 source = (self.base / name).read_text()
