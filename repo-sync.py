@@ -195,20 +195,6 @@ class Repository:
                 source = (self.base / name).read_text()
                 output.write_text(source.replace(original, replacement))
 
-            # add tomlsort configuration to pyproject.toml
-            output = self.directory / "pyproject.toml"
-            content = output.read_text()
-            if "tool.tomlsort" not in content:
-                output.write_text(f"""{content}
-
-[tool.tomlsort]
-ignore_case = true
-sort_inline_arrays = true
-sort_inline_tables = true
-sort_table_keys = true
-spaces_before_inline_comment = 2
-""")
-
         # Remove extra files
         for name in REMOVE_FILES:
             if (self.name, name) in REMOVE_EXCEPTIONS:
