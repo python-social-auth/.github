@@ -16,7 +16,6 @@ ignore = [
 ]
 select = ["ALL"]
 
-
 [tool.tomlsort]
 ignore_case = true
 sort_inline_arrays = true
