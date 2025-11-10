@@ -9,7 +9,7 @@ contribution should be followed if you want to submit a pull request.
 ## How to prepare
 
 - You need a [GitHub account](https://github.com/signup/free)
-- For bug reports or significant changes, submit an issue if there is no one yet.
+- For bug reports or significant changes, submit an issue if one does not exist yet.
   - Describe the issue and include steps to reproduce if it's a bug.
   - Ensure to mention the earliest version that you know is affected.
   - For simple fixes like typos or minor documentation improvements, you can skip this step and submit a pull request directly.
