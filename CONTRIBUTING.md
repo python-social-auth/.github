@@ -29,7 +29,7 @@ contribution should be followed if you want to submit a pull request.
 - For code contributions, make sure you stick to [PEP8](https://www.python.org/dev/peps/pep-0008/)
   coding style that is used already.
 - If the repository has tests, submit tests for your patch / new feature so it can be tested easily, and assure nothing is broken by running all the tests.
-- For notable changes, add a meaningful entry to the `CHANGELOG.md` document if one exists.
+- For notable changes, add a meaningful entry to the `CHANGELOG.md` document if it exists.
 
 ## Submit Changes
 
