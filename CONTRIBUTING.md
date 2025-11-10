@@ -9,9 +9,10 @@ contribution should be followed if you want to submit a pull request.
 ## How to prepare
 
 - You need a [GitHub account](https://github.com/signup/free)
-- Submit an issue for your issue if there is no one yet.
+- For bug reports or significant changes, submit an issue if one does not exist yet.
   - Describe the issue and include steps to reproduce if it's a bug.
   - Ensure to mention the earliest version that you know is affected.
+  - For simple fixes like typos or minor documentation improvements, you can skip this step and submit a pull request directly.
 - If you are able and want to fix this, fork the repository on GitHub
 
 ## Make Changes
@@ -22,13 +23,13 @@ contribution should be followed if you want to submit a pull request.
   - Create a branch based on master `git branch bug/auth-fails master`
     then checkout the new branch with `git checkout bug/auth-fails`.
     Please avoid working directly on the `master` branch.
+  - Note: GitHub's web editor may create automatic branch names like `patch-1` if you edit files online, which is acceptable for quick fixes.
 - Make commits of logical units and describe them properly.
 - The coding style is checked by [pre-commit](https://pre-commit.com/).
-- Make sure you stick to [PEP8](https://www.python.org/dev/peps/pep-0008/)
+- For code contributions, make sure you stick to [PEP8](https://www.python.org/dev/peps/pep-0008/)
   coding style that is used already.
-- If possible, submit tests to your patch / new feature so it can be tested easily.
-- Assure nothing is broken by running all the tests.
-- Add a meaningful entry to the `CHANGELOG.md` document.
+- If the repository has tests, submit tests for your patch / new feature so it can be tested easily, and assure nothing is broken by running all the tests.
+- For notable changes, add a meaningful entry to the `CHANGELOG.md` document if it exists.
 
 ## Submit Changes
 
