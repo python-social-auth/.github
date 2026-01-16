@@ -222,7 +222,7 @@ class Repository:
 
     def pre_commit(self) -> None:
         """Run pre-commit on the repository."""
-        self.run(["uvx", "pre-commit", "run", "--all-files"], check=False)
+        self.run(["uvx", "prek", "run", "--all-files"], check=False)
         self.commit(message=COMMIT_MESSAGE_PRE_COMMIT)
 
 
