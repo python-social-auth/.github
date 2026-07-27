@@ -1,3 +1,7 @@
+# Copyright © Michal Čihař <michal@weblate.org>
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
 """
 Synchronizes shared content between Python Social Auth repositories.
 
