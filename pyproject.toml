@@ -20,6 +20,14 @@ select = ["ALL"]
 min-file-size = 2
 notice-rgx = "(?i)Copyright\\s+©\\s+"
 
+[tool.rumdl]
+disable = [
+  # We do not enforce heading
+  "first-line-heading",
+  # Avoid length limit checks
+  "line-length"
+]
+
 [tool.tomlsort]
 ignore_case = true
 sort_inline_arrays = true
