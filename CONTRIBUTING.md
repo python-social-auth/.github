@@ -43,14 +43,14 @@ contribution should be followed if you want to submit a pull request.
   push or merge pull-requests. Let another team member review your
   pull request and approve.
 
-# Additional Resources
+## Additional Resources
 
 - [General GitHub documentation](http://help.github.com/)
 - [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
 - [Read the Issue Guidelines by @necolas](https://github.com/necolas/issue-guidelines/blob/master/CONTRIBUTING.md)
   for more details
 
-# Notes
+## Notes
 
 This documented is based in the work from [anselmh/CONTRIBUTING.md](https://github.com/anselmh/CONTRIBUTING.md),
 licensed as [Creative Commons Attribution 3.0 Unported License](https://github.com/anselmh/CONTRIBUTING.md/blob/master/README.md#license).
