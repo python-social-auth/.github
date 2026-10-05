@@ -223,16 +223,20 @@ class Repository:
     def update_readme(self, base: Readme) -> None:
         """Update README files to match base."""
         for name in ["README.md", "profile/README.md"]:
-            path = self.directory / name
-            if path.exists():
-                readme = Readme(path)
-                readme.update(base)
-                readme.save()
+            update_readme(self.directory / name, base)
 
     def pre_commit(self) -> None:
         """Run pre-commit on the repository."""
         self.run(["uvx", "prek", "run", "--all-files"], check=False)
         self.commit(message=COMMIT_MESSAGE_PRE_COMMIT)
+
+
+def update_readme(path: Path, base: Readme) -> None:
+    """Update existing README sections to match base."""
+    if path.exists():
+        readme = Readme(path)
+        readme.update(base)
+        readme.save()
 
 
 def main() -> None:
@@ -254,6 +258,7 @@ def main() -> None:
     readme = Readme(base / "README.md")
     for repo in repos:
         repo.update_readme(readme)
+    update_readme(ROOT / "profile/README.md", readme)
 
     # Commit changes
     for repo in repos:

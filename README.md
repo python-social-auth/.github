@@ -8,7 +8,7 @@ mechanism with support for several frameworks and auth providers.
 - project README
 - `CONTRIBUTING.md`, `SECURITY.md` and `funding.json` files
 - issue and pull request templates
-- `repo-sync.py` script to su
+- `repo-sync.py` script to synchronize README and maintenance scripts from the social-core repo to others
 
 ## Documentation
 
