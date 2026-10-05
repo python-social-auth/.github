@@ -80,7 +80,7 @@ README_SECTIONS: tuple[str, ...] = (
     "## Contributing",
     "## Versioning",
     "## License",
-    "## Donations",
+    "## Supporters",
 )
 COMMIT_MESSAGE = """chore: update shared files
 
@@ -128,6 +128,11 @@ class Readme:
 
     def update(self, base: Readme) -> None:
         """Update content to match base."""
+        if "## Supporters" in base.sections:
+            self.sections = {
+                "## Supporters" if section == "## Donations" else section: content
+                for section, content in self.sections.items()
+            }
         for section, content in base.sections.items():
             if section.startswith("# "):
                 # Initial description of PSA
