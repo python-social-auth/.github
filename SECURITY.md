@@ -13,6 +13,17 @@ Be sure to include as much detail as necessary in your report. As with
 reporting normal issues, a minimal reproducible example will help the
 maintainers address the issue faster.
 
+## Threat models
+
+The [social-auth-core threat model](https://github.com/python-social-auth/social-core/blob/master/THREAT_MODEL.md)
+documents the core library's trust boundaries, claimed and disclaimed security
+properties, downstream responsibilities, and vulnerability triage rules.
+
+The [social-auth-app-django threat model](https://github.com/python-social-auth/social-app-django/blob/master/THREAT_MODEL.md)
+documents the Django integration's corresponding security contract. This
+security policy remains the reporting channel for findings that violate a
+property claimed by either model.
+
 ## Supported versions
 
 Only the latest release is guaranteed to receive security fixes.
