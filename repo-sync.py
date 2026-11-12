@@ -7,12 +7,6 @@ Synchronizes shared content between Python Social Auth repositories.
 
 Execute: uv run repo-sync.py
 """
-# /// script
-# requires-python = ">=3.11"
-# dependencies = [
-#     "termcolor==2.5.0",
-# ]
-# ///
 
 from __future__ import annotations
 

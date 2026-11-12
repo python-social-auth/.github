@@ -16,7 +16,7 @@ publishing configuration. The sync script leaves these files unchanged.
 Run the sync regression tests with:
 
 ```shell
-uv run --no-project --with termcolor==2.5.0 python -m unittest discover -s tests
+uv run python -m unittest discover -s tests
 ```
 
 ## Documentation
