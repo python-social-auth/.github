@@ -47,33 +47,7 @@ REPOS = ROOT / "repos"
 COPY_FROM_BASE: tuple[str, ...] = (
     ".pre-commit-config.yaml",
     ".github/renovate.json",
-    ".github/workflows/release.yml",
-)
-COPY_FROM_BASE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
-    # These do not release
-    (".github", ".github/workflows/release.yml"),
-    ("social-docs", ".github/workflows/release.yml"),
-    ("social-examples", ".github/workflows/release.yml"),
-)
-ADJUST_FROM_BASE: dict[str, tuple[str, str]] = {
-    ".github/workflows/pre-commit.yml": (
-        "uses: ./.github/workflows/pre-commit-shared.yml",
-        "uses: python-social-auth/social-core/.github/workflows/pre-commit-shared.yml@master",
-    ),
-}
-REMOVE_FILES: tuple[str, ...] = (
-    ".github/dependabot.yml",
-    ".github/workflows/ruff.yml",
-    ".landscape.yaml",
-    ".flake8",
-    "Makefile",
-    "Dockerfile",
-    "CONTRIBUTING.md",
-    "renovate.json",
-)
-REMOVE_EXCEPTIONS: tuple[tuple[str, str], ...] = (
-    # This is the only location for CONTRIBUTING.md
-    (".github", "CONTRIBUTING.md"),
+    ".github/workflows/pre-commit.yml",
 )
 README_SECTIONS: tuple[str, ...] = (
     "## Documentation",
@@ -192,24 +166,9 @@ class Repository:
         # Update files from base repo
         if self.base != self.directory:
             for name in COPY_FROM_BASE:
-                if (self.name, name) in COPY_FROM_BASE_EXCEPTIONS:
-                    continue
                 output = self.directory / name
                 output.parent.mkdir(exist_ok=True, parents=True)
                 copyfile(self.base / name, output)
-
-            for name, (original, replacement) in ADJUST_FROM_BASE.items():
-                output = self.directory / name
-                output.parent.mkdir(exist_ok=True, parents=True)
-                source = (self.base / name).read_text()
-                output.write_text(source.replace(original, replacement))
-
-        # Remove extra files
-        for name in REMOVE_FILES:
-            if (self.name, name) in REMOVE_EXCEPTIONS:
-                continue
-            file = self.directory / name
-            file.unlink(missing_ok=True)
 
     def commit(self, message: str = COMMIT_MESSAGE) -> None:
         """Commit and push pending changes."""

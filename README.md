@@ -8,7 +8,16 @@ mechanism with support for several frameworks and auth providers.
 - project README
 - `CONTRIBUTING.md`, `SECURITY.md` and `funding.json` files
 - issue and pull request templates
-- `repo-sync.py` script to synchronize README and maintenance scripts from the social-core repo to others
+- `repo-sync.py` script to synchronize shared README sections, pre-commit configuration and workflow, and Renovate configuration from the social-core repo to others
+
+Each repository owns its release workflow, packaging checks, lockfile, and
+publishing configuration. The sync script leaves these files unchanged.
+
+Run the sync regression tests with:
+
+```shell
+uv run --no-project --with termcolor==2.5.0 python -m unittest discover -s tests
+```
 
 ## Documentation
 
