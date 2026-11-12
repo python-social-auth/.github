@@ -1,5 +1,5 @@
 [project]
-dependencies = ["termcolor==2.5.0"]
+dependencies = ["termcolor==3.3.0"]
 name = "python-social-auth-meta"
 requires-python = ">=3.11"
 version = "2025.0"
